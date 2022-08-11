@@ -11,7 +11,8 @@ void searchTarget(struct node *head, int key);
 void insertFromTail(struct node *head, int input);
 struct node* insertFromHead(struct node *head, int inputHead);
 void deleteForTail(struct node *head);
-void  deleteTarget(struct node *head, int key);
+void deleteTarget(struct node *head, int key);
+void sortList(struct node *head);
 
 int main(void){
     struct node *head = NULL;
@@ -36,6 +37,10 @@ int main(void){
     printf("\n");
 
     head = insertFromHead(head, 10);
+    printList(head);
+    printf("\n");
+
+    sortList(head);
     printList(head);
     printf("\n");
 
@@ -111,6 +116,19 @@ void  deleteTarget(struct node *head, int key){
     while(temp->next!=NULL){
         if(temp->next->data==key){
             temp->next = temp->next->next;
+        }
+        temp = temp->next;
+    }
+}
+
+void sortList(struct node *head){
+    struct node *temp = (struct node*)malloc(sizeof(struct node));
+    temp = head;
+    while(temp->next!=NULL){
+        if(temp->data > temp->next->data){
+            int tempData = temp->data;
+            temp->data = temp->next->data;
+            temp->next->data = tempData;
         }
         temp = temp->next;
     }

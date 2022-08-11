@@ -16,7 +16,22 @@ void inorder(struct node *root)
         printf("%d ", root->data);
         inorder(root->right);
     }
-    printf("\n");
+}
+
+void search(struct node *root, int target){
+    while(root!=NULL){
+        if(root->data == target){
+            printf("%d is found\n", target);
+            return;
+        }else{
+            if(target < root->data){
+                root = root->left;
+            }else{
+                root = root->right;
+            }
+        }
+    }
+    printf("%d is not found\n", target);
 }
 
 int main()
@@ -51,6 +66,9 @@ int main()
     leftL3Node_R = NULL;
 
     inorder(root);
+    printf("\n");
+
+    search(root, 3);
 
     return 0;
 }
